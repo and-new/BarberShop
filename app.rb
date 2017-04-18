@@ -92,16 +92,17 @@ post '/visit' do
 #		return erb :visit
 #	end
 
-db.execute 'insert into 
-				Users 
-				(username, 
+	db = get_db	
+  db.execute 'insert into 
+				 Users 
+				 (username, 
 				 phone, 
 				 datestamp, 
 				 barber, 
 				 color)
 				 values( ?, ?, ?, ?, ?)',
 				 [@username, @phone, @datetime, @barber, @color]
-
+ 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, 
 	#{@barber}, #{@color}"
 
