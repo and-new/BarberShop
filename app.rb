@@ -12,9 +12,10 @@ def seed_db db, barbers
 
 	barbers.each do |barber|
 		if !is_barber_exists? db, barber
-			db.execute 'insert into Barbers (name) values(?)' [barber]
+			db.execute 'insert into Barbers (name) values(?)', [barber]
 		end
 
+	end
 end
 
 def get_db
@@ -86,7 +87,6 @@ post '/visit' do
 #		return erb :visit
 #	end
 
-db = get_db
 db.execute 'insert into 
 				Users 
 				(username, 
@@ -94,7 +94,7 @@ db.execute 'insert into
 				 datestamp, 
 				 barber, 
 				 color)
-				 values( ?,?,?,?,?)',
+				 values( ?, ?, ?, ?, ?)',
 				 [@username, @phone, @datetime, @barber, @color]
 
 	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, 
